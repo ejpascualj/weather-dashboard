@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <main>
+        <!-- Form to select the cities -->
+        <form action="">
+            <h2>Search for a City</h2>
+            <input type="text" id="CityInput" class=""/>
+            <button type="submit" id="SubmitButton">Search</button>
+        </form>
+        
+        <!-- Search History -->
+        <div id="SearchHistory">
+            <button id="city00">City 0</button>
+            <button id="city01">City 1</button>
+            <button id="city02">City 2</button>
+            <button id="city03">City 3</button>
+            <button id="city04">City 4</button>
+            <button id="city05">City 5</button>
+            <button id="city06">City 6</button>
+            <button id="city07">City 7</button>
+        </div>
+        
+        <!-- Current Weather -->
+        <div id="CurrentWeather">
+            <h2 id="CurrentCity">
+                <span id="CityName"></span>
+                <span id="Date"></span>
+                <span id="Icon"></span>
+            </h2>
+            <ul id="WeatherConditions">
+                <li id="Temp">Temp: </li>
+                <li id="Wind">Wind: </li>
+                <li id="Humidity">Humidity: </li>
+                <li id="UVindex">UV index: </li>
+            </ul>
+        </div>
+
+        <!-- 5-Day Forecast -->
+        <div id="FiveDayForecast">
+            <h2>5-day Forecast</h2>
+            <div id="FiveDayForecastContainer">
+                <div id="ForecastDay0"></div>
+                <div id="ForecastDay1"></div>
+                <div id="ForecastDay2"></div>
+                <div id="ForecastDay3"></div>
+                <div id="ForecastDay4"></div>
+            </div>
+        </div>
+
+    </main>
+    
+    <!-- Scripts -->
+    <!-- Open Weather API -->
+    <!-- Local JavaScript -->
+    <script src="./assets/script.js"></script>
+</body>
+</html>
