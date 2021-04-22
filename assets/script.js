@@ -2,6 +2,7 @@
 // Search City Form
 var CityInput = document.querySelector("#CityInput");
 var SubmitButton = document.querySelector("#SubmitButton");
+var SearchHistory = JSON.parse(localStorage.getItem("search")) || [];
 // Search History
 var SearchHistoryDiv = document.querySelector("#SearchHistory");
 // Current Weather
@@ -25,9 +26,11 @@ var ForecastDay3El = document.querySelector("#ForecastDay3");
 var ForecastDay4El = document.querySelector("#ForecastDay4");
 
 // FUNCTIONS
+
+
 // 1. Function that fetches weather API based on city
 function FetchWeather(City) {
-    var City = CityInput.value.trim().toUpperCase()
+    
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + City + "&appid=4160ec3520c203fccfead3fd09fe42ff")
         .then(function (response) {
             return response.json();
@@ -85,17 +88,70 @@ function FetchWeather(City) {
                 ForecastList.appendChild(ForecastHumidityEl)
             }
         })
-    AddCityButton(City)
+    // AddCityButton(City)
 }
 
 // 3. Function to populate Search History Buttons with latest searches (unshift 0th element, pop 7th element)
 function AddCityButton(City) {
     var NewCityButton = document.createElement("button");
     NewCityButton.textContent = City;
+    NewCityButton.classList = "CityButton"
     SearchHistoryDiv.prepend(NewCityButton);
 }
 
 // 4. Store and Load Search History from Local Storage
+function LocalStorageStore(){
+    var City = CityInput.value.trim().toUpperCase();
+    SearchHistory.push(City)
+    localStorage.setItem("search", JSON.stringify(SearchHistory));
+    // var SearchHistory = JSON.parse(localStorage.getItem("Cities"));
+    // SearchHistory.push(City);
+    CityInput.value="";
+    // function to clear fetched weather data
+    ClearData();
+}
+
+function LocalStorageLoad(){
+    if (localStorage.getItem("search")){
+        var StoredCities = JSON.parse(localStorage.getItem("search"))
+        console.log(StoredCities);
+        for (var i =0; i<StoredCities.length; i++){
+            AddCityButton(StoredCities[i]);
+        }
+    }
+    
+    var CityButtons = document.getElementsByClassName("CityButton");
+    console.log(CityButtons)
+    for (i=0; i<CityButtons.length; i++){
+        CityButtons[i].addEventListener("click",function(){
+            City03 = this.innerText
+            console.log(City03)
+            FetchWeather(City03);
+            ClearData();
+        })
+    }
+}
+
+function ClearData(){
+    ForecastContainerEl.innerHTML = "";
+}
+
+// // 0. Auxiliary Function to trigger all functions
+// function Search(event){
+//     event.preventDefault();
+//     var City = CityInput.value.trim().toUpperCase();
+//     FetchWeather(City);
+//     AddCityButton(City);
+//     LocalStorageStore();
+// }
 
 // EVENT LISTENERS
-SubmitButton.addEventListener("click", FetchWeather);
+SubmitButton.addEventListener("click", function(event){
+    event.preventDefault();
+    var City = CityInput.value.trim().toUpperCase();
+    FetchWeather(City);
+    AddCityButton(City);
+    LocalStorageStore();
+});
+
+LocalStorageLoad();
