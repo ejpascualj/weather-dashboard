@@ -53,10 +53,10 @@ function FetchWeather(City) {
             UVindexEl.textContent = data02.current.uvi;
             
             //if statements with bootstrap to change color based on value
-            if (UVindexEl.textContent > 5) {
+            if (UVindexEl.textContent > 5.5) {
                 //bootstrap red
                 UVindexEl.classList = "bg-danger"
-            } else if (UVindex.textContent > 2) {
+            } else if (UVindex.textContent > 2.5) {
                 //bootstrap yellow
                 UVindexEl.classList = "bg-warning"
             } else {
@@ -152,6 +152,16 @@ SubmitButton.addEventListener("click", function (event) {
     FetchWeather(City);
     AddCityButton(City);
     LocalStorageStore();
+});
+
+CityInput.addEventListener("keypress", function (event) {
+    event.preventDefault();
+    if (event.key === "Enter"){
+        var City = CityInput.value.trim().toUpperCase();
+        FetchWeather(City);
+        AddCityButton(City);
+        LocalStorageStore();
+    }
 });
 
 LocalStorageLoad();
