@@ -23,8 +23,8 @@ var WindEl = document.querySelector("#Wind");
 var HumidityEl = document.querySelector("#Humidity");
 var UVindexEl = document.querySelector("#UVindex");
 // 5-day Forecast
-var FiveDayForecastEl = document.querySelector("#FiveDayForecast");
-var FiveDayForecastContainerEl = document.querySelector("#FiveDayForecastContainer");
+var ForecastEl = document.querySelector("#FiveDayForecast");
+var ForecastContainerEl = document.querySelector("#FiveDayForecastContainer");
 var ForecastDay0El = document.querySelector("#ForecastDay0");
 var ForecastDay1El = document.querySelector("#ForecastDay1");
 var ForecastDay2El = document.querySelector("#ForecastDay2");
@@ -59,11 +59,41 @@ function FetchWeather(City) {
         console.log(data02)
         UVindexEl.textContent = data02.current.uvi;
         //if statements with bootstrap to change color based on value
-        //fetch 5-day forecast
+        //5-day forecast
+        for (var i=1; i<6; i++){
+            //select variables to be displayed
+            var ForecastDate = data02.daily[i].dt;
+            var ForecastIcon = data02.daily[i].weather[0].icon;
+            var ForecastTemp = data02.daily[i].temp.max;
+            var ForecastWind = data02.daily[i].wind_speed;
+            var ForecastHumidity = data02.daily[i].humidity;
+            // create a new element within Forecast container
+            var ForecastList = document.createElement("ul");
+            ForecastContainerEl.appendChild(ForecastList);
+
+            var ForecastDateEl = document.createElement("li");
+            ForecastDateEl.textContent = ForecastDate
+            ForecastList.appendChild(ForecastDateEl)
+
+            var ForecastIconEl = document.createElement("li");
+            ForecastIconEl.textContent = ForecastIcon
+            ForecastList.appendChild(ForecastIconEl)
+
+            var ForecastTempEl = document.createElement("li");
+            ForecastTempEl.textContent = ForecastTemp
+            ForecastList.appendChild(ForecastTempEl)
+
+            var ForecastWindEl = document.createElement("li");
+            ForecastWindEl.textContent = ForecastWind
+            ForecastList.appendChild(ForecastWindEl)
+
+            var ForecastHumidityEl = document.createElement("li");
+            ForecastHumidityEl.textContent = ForecastHumidity
+            ForecastList.appendChild(ForecastHumidityEl)  
+        }
     })
 }
 
-`$()`
 
 // 2. Function that listens to search submit button and calls weather function (1)
 
