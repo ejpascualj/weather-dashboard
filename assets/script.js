@@ -51,7 +51,19 @@ function FetchWeather(City) {
         }).then(function (data02) {
             console.log(data02)
             UVindexEl.textContent = data02.current.uvi;
+            
             //if statements with bootstrap to change color based on value
+            if (UVindexEl.textContent > 5) {
+                //bootstrap red
+                UVindexEl.classList = "bg-danger"
+            } else if (UVindex.textContent > 2) {
+                //bootstrap yellow
+                UVindexEl.classList = "bg-warning"
+            } else {
+                //bootstrap green
+                UVindexEl.classList = "bg-success"
+            }
+
             //5-day forecast
             for (var i = 1; i < 6; i++) {
                 //select variables to be displayed
@@ -68,7 +80,7 @@ function FetchWeather(City) {
                 var ForecastDateEl = document.createElement("li");
                 ForecastDateEl.textContent = ForecastDate
                 ForecastList.appendChild(ForecastDateEl)
-                
+
                 var ForecastIconImg = document.createElement("img");
                 ForecastIconImg.setAttribute("src", "http://openweathermap.org/img/wn/" + ForecastIcon + ".png");
                 ForecastList.appendChild(ForecastIconImg)
