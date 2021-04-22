@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="./assets/style.css">
     <title>Weather Dashboard</title>
 </head>
@@ -13,11 +12,11 @@
         <h1>Weather Dashboard</h1>
     </header>
     <main>
-        <!-- Form to select the cities -->
+        <!-- Search City Form -->
         <form action="">
             <h2>Search for a City</h2>
-            <input type="text" id="CityInput" class=""/>
-            <button type="submit" id="SubmitButton">Search</button>
+            <input type="text" id="CityInput"/>
+            <button type="button" id="SubmitButton">Search</button>
         </form>
         
         <!-- Search History -->
@@ -40,10 +39,10 @@
                 <span id="Icon"></span>
             </h2>
             <ul id="WeatherConditions">
-                <li id="Temp">Temp: </li>
-                <li id="Wind">Wind: </li>
-                <li id="Humidity">Humidity: </li>
-                <li id="UVindex">UV index: </li>
+                <li>Temp: <span id="Temp"></span> K</li>
+                <li >Wind: <span id="Wind"></span> MPH</li>
+                <li>Humidity: <span id="Humidity"></span>%</li>
+                <li>UV index: <span id="UVindex"></span></li>
             </ul>
         </div>
 
@@ -62,7 +61,7 @@
     </main>
     
     <!-- Scripts -->
-    <!-- Open Weather API -->
+    <!-- Moment(?)  -->
     <!-- Local JavaScript -->
     <script src="./assets/script.js"></script>
 </body>
