@@ -155,8 +155,8 @@ SubmitButton.addEventListener("click", function (event) {
 });
 
 CityInput.addEventListener("keypress", function (event) {
-    event.preventDefault();
     if (event.key === "Enter"){
+        event.preventDefault();
         var City = CityInput.value.trim().toUpperCase();
         FetchWeather(City);
         AddCityButton(City);
