@@ -26,6 +26,11 @@ var ForecastDay3El = document.querySelector("#ForecastDay3");
 var ForecastDay4El = document.querySelector("#ForecastDay4");
 
 // FUNCTIONS
+function KelvinToFarenheit(K){
+    var F = Math.round(1.8*(K - 273) + 32);
+    return F
+}
+
 // 1. Function that fetches weather API based on city
 function FetchWeather(City) {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + City + "&appid=4160ec3520c203fccfead3fd09fe42ff")
@@ -38,7 +43,7 @@ function FetchWeather(City) {
             DateEl.textContent = moment(data.dt, "X").format("DD-MMM-YYYY");
             IconEl.setAttribute("src", "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
             // Populate Current Weather Data
-            TempEl.textContent = data.main.temp;
+            TempEl.textContent = KelvinToFarenheit(data.main.temp);
             WindEl.textContent = data.wind.speed;
             HumidityEl.textContent = data.main.humidity;
             // Store latitude and longitude data
